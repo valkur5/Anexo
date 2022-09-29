@@ -5,21 +5,21 @@ $texto=file_get_contents($archivo);
 
 
 if (isset($_GET["archivo"])){
-    $archivo2 = $_GET['archivo'];
+    $archivo = $_GET['archivo'];
     if (isset($_GET['guardar'])){
 		if($_GET["archivo"]=="basic.c"){
 			echo '<script language="javascript">alert("Antes de guardar elija otro nombre de archivo");</script>';
 		}else{	
-    		file_put_contents($archivo2,$_GET['texto']);
+    		file_put_contents($archivo,$_GET['texto']);
 			file_put_contents("auxiliar.c",$_GET['texto']);
 		}
     }
 }
-$texto=file_get_contents($archivo2);
+$texto=file_get_contents($archivo);
 
 if(isset($_GET['cargar'])){
 	$archivo=$_GET["archivo"];
-	$texto=file_get_contents($archivo2);
+	$texto=file_get_contents($archivo);
 }
 if(isset($_GET['compilar'])){
     shell_exec('compilar.bat auxiliar.c');
@@ -43,8 +43,6 @@ if(isset($_GET['ejecutar'])){
 	<!-- Compiled and minified CSS -->
 	<link type="text/css" media="screen,projection" rel="stylesheet" href="./sources/materialize/css/materialize.css">
 	
-	<!-- Mi css -->
-	<link rel="stylesheet" href="index.css"></link>
 
 	<div class="container section">
 		<title>Laboratorio Remoto UNCa</title>

@@ -1,5 +1,5 @@
 <?php
-
+header("Cache-control: no-cache, must-revalidate");
 if (isset($_GET['tec1'])){
 shell_exec("switch.bat 1");
 }
@@ -13,17 +13,27 @@ if (isset($_GET['tec4'])){
 shell_exec("switch.bat 4");
 }
 ?>
+
 <html>
-<div class="container section"><h2 class="teal-text text-lighten-2 center-align">Ejecución</h2></div>
+<head>
+	<meta http-equiv='cache-control'  content='no-cache'>
+	<meta http-equiv='expires'  content='0'>
+	<meta http-equiv='pragma'  content='no-cache'>
+</head>
+<div class=" section blue lighten-5"><h2 class="teal-text text-lighten-2 center-align">Ejecución</h2></div>
 	<!-- Compiled and minified CSS -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link type="text/css" media="screen,projection" rel="stylesheet" href="./sources/materialize/css/materialize.css">
 
 	<!-- Compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script type="text/javascript" src="./sources/materialize/js/materialize.js"></script>
 	
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<body>
+<body onload="webCam()" class="blue darken-2">
+	<div class="container section center-align">
+		<img id="webcam" src="" style="height: 480px; width:640;">
+		</img>
+	</div>
 	<div class="container center-align">
 		<form>
 	    <input type="submit" value="tec1" name="tec1" class="btn blue lighten-2"/>
@@ -35,5 +45,18 @@ shell_exec("switch.bat 4");
 	<a href="http://localhost/pruebas">
 	<input type="button" value="Volver" id="volver" class="btn blue lighten-2"/>
 	</a>
+	<script type="text/javascript">
+		var newImage = new Image();
+		newImage.src= "http://localhost/pruebas/sources/webcam/image0.jpg"
+		function webCam(){
+		if(newImage.complete){
+			document.getElementById("webcam").src= newImage.src;
+			newImage.src="http://localhost/pruebas/sources/webcam/image0.jpg?" + new Date().getTime();
+		}
+		setInterval(webCam, 300);
+		}
+		
+		
+	</script>
 </body>
 </html>
