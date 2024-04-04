@@ -1,6 +1,6 @@
 ﻿<?php
 $resultado='';
-$archivo='basic.c';
+$archivo='./src/assets/codes/basic.c';
 $texto=file_get_contents($archivo);
 
 
@@ -22,11 +22,11 @@ if(isset($_GET['cargar'])){
 	$texto=file_get_contents($archivo);
 }
 if(isset($_GET['compilar'])){
-    shell_exec('compilar.bat auxiliar.c');
-    $resultado=file_get_contents('resultado.txt');
+    shell_exec('./src/app/compilar.bat auxiliar.c');
+    $resultado=file_get_contents('./src/app/resultado.txt');
 }
 if(isset($_GET['ejecutar'])){
-    shell_exec('Debug.bat');
+    shell_exec('./src/app/Debug.bat');
 }
 
 ?>
@@ -49,7 +49,7 @@ if(isset($_GET['ejecutar'])){
 	</div>
 </head>
 <body class="blue darken-2">
-<img class="responsive-img" src="./sources/fondo.png">
+<img class="responsive-img" src="./src/assets/fondo.png">
 <div class="container row">
 	<h1 class="col s12 flow-text center-align"> Laboratorio Remoto </h1>
 </div>
@@ -81,8 +81,8 @@ if(isset($_GET['ejecutar'])){
 <div class="container row"><pre class="col s12 m7"><?=$resultado?></pre></div>
 </form>
 <!-- Compiled and minified JavaScript -->
-<script type="text/javascript" src="./sources/materialize/js/materialize.js"></script>
-<script src="sources/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="./src/materialize/js/materialize.js"></script>
+<script src="./src/ace-master/src/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
