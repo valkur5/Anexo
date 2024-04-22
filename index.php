@@ -1,10 +1,10 @@
 ﻿<?php
-$texto=file_get_contents('basic.c');
+$texto=file_get_contents('./src/assets/files/basic.c');
 if(isset($_POST['subir'])){
-	$dir_subida = './sources/archivos/';
+	$dir_subida = './src/assets/files';
 	$fichero_subido = $dir_subida . basename($_FILES['cargar']['name']);
-	move_uploaded_file($_FILES['cargar']['tmp_name'],'./sources/archivos/auxiliar.c');
-	$texto=file_get_contents('./sources/archivos/auxiliar.c');
+	move_uploaded_file($_FILES['cargar']['tmp_name'],'./src/assets/files/auxiliar.c');
+	$texto=file_get_contents('./src/assets/files/auxiliar.c');
 }
 ?>
 <!DOCTYPE html>
