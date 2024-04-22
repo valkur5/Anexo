@@ -18,15 +18,15 @@ if(isset($_POST['subir'])){
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<!-- Compiled and minified CSS -->
-	<link type="text/css" media="screen,projection" rel="stylesheet" href="./sources/materialize/css/materialize.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-	<link type="text/css" media="screen,projection" rel="stylesheet" href="index.css">
+	<link type="text/css" media="screen,projection" rel="stylesheet" href="./src/styles/index.css">
 	
 	<title>Laboratorio Remoto UNCa</title>
 
 </head>
 <body id="contenido" class="animate__animated animate__fadeIn">
-<img class="responsive-img" src="./sources/fondo.png">
+<img class="responsive-img" src="./src/assets/fondo.png">
 <div class="container row blue">
 	<h1 class="col s12 flow-text center-align"> Laboratorio Remoto </h1>
 </div>
@@ -74,10 +74,10 @@ if(isset($_POST['subir'])){
 
 <!-- Compiled and minified JavaScript -->
 
-<script type="text/javascript" src="./sources/materialize/js/materialize.js"></script>
-<script src="sources/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
-<script type="text/javascript" src="./sources/FileSaver.js/src/FileSaver.js"></script>
-<script type="text/javascript" src="./sources/jquery-3.6.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script src="./src/components/code/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="./src/components/FileSaver/src/FileSaver.js"></script>
+<script type="text/javascript" src="./src/jquery-3.6.1.min.js"></script>
 <script>
 
     var editor = ace.edit("editor");
