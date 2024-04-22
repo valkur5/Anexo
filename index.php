@@ -1,34 +1,11 @@
 ﻿<?php
-$resultado='';
-$archivo='./src/assets/codes/basic.c';
-$texto=file_get_contents($archivo);
-
-
-if (isset($_GET["archivo"])){
-    $archivo = $_GET['archivo'];
-    if (isset($_GET['guardar'])){
-		if($_GET["archivo"]=="basic.c"){
-			echo '<script language="javascript">alert("Antes de guardar elija otro nombre de archivo");</script>';
-		}else{	
-    		file_put_contents($archivo,$_GET['texto']);
-			file_put_contents("auxiliar.c",$_GET['texto']);
-		}
-    }
+$texto=file_get_contents('basic.c');
+if(isset($_POST['subir'])){
+	$dir_subida = './sources/archivos/';
+	$fichero_subido = $dir_subida . basename($_FILES['cargar']['name']);
+	move_uploaded_file($_FILES['cargar']['tmp_name'],'./sources/archivos/auxiliar.c');
+	$texto=file_get_contents('./sources/archivos/auxiliar.c');
 }
-$texto=file_get_contents($archivo);
-
-if(isset($_GET['cargar'])){
-	$archivo=$_GET["archivo"];
-	$texto=file_get_contents($archivo);
-}
-if(isset($_GET['compilar'])){
-    shell_exec('./src/app/compilar.bat auxiliar.c');
-    $resultado=file_get_contents('./src/app/resultado.txt');
-}
-if(isset($_GET['ejecutar'])){
-    shell_exec('./src/app/Debug.bat');
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,52 +19,114 @@ if(isset($_GET['ejecutar'])){
 
 	<!-- Compiled and minified CSS -->
 	<link type="text/css" media="screen,projection" rel="stylesheet" href="./sources/materialize/css/materialize.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+	<link type="text/css" media="screen,projection" rel="stylesheet" href="index.css">
 	
+	<title>Laboratorio Remoto UNCa</title>
 
-	<div class="container section">
-		<title>Laboratorio Remoto UNCa</title>
-	</div>
 </head>
-<body class="blue darken-2">
-<img class="responsive-img" src="./src/assets/fondo.png">
-<div class="container row">
+<body id="contenido" class="animate__animated animate__fadeIn">
+<img class="responsive-img" src="./sources/fondo.png">
+<div class="container row blue">
 	<h1 class="col s12 flow-text center-align"> Laboratorio Remoto </h1>
 </div>
 
-<form action="" method="get" >
-<!-- panel de selección de archivo--> 
-<div class="input-field row section center-align blue lighten-5">
-    <div class="input-field col s6 offset-s3">
-		<input class="validate" type="text" name="archivo" id="ArchName" value="<?=$archivo?>"/>
-		<Label for="ArchName" style="font-size:20px;">Nombre del archivo:</Label>
-	</div>
-</div>
-
+<form action="" method="post" >
  <!-- Area de programación -->
 <div class="container center-align section row">
- 	<pre name="texto" class="col s12" id="editor"><?=$texto?></pre>
+ 	<textarea name="texto" class="col s12" id="editor"><?=$texto?></textarea>
 </div>
+
 
 <!-- Botones de acción -->
 <div class="container center-align row">
 	<div class="center-align row">
-	<input type="submit" value="Guardar" name="guardar" class="btn blue lighten-2 "></input>
-    <input type="submit" value="Cargar" name="cargar" class="btn blue lighten-2"></input>
-    <input type="submit" value="Compilar" name="compilar" class="btn blue lighten-2"></input>
-	<input type="submit" value="Ejecutar" name="ejecutar" class="btn blue lighten-2"></input>
+	<button onclick="descargar()" type="button"  name="guardar" class="btn blue lighten-2 ">
+		<i class="material-icons left">file_download</i>
+		Descargar código
+	</button>
+
+	<button id="compilar" type="button" name="compilar" class="btn blue lighten-2">
+		<i class="material-icons left">assignment_turned_in</i>
+		Compilar
+	</button>
+
+	<a href="./ejec.php" id="ejecutar" class="btn waves-effect waves-light">Ejecutar</a>
 	</div>
 </div>
-<a href="http://localhost/pruebas/ejec.php" class="btn waves-effect waves-light">Ver</a>
-<div class="container row"><pre class="col s12 m7"><?=$resultado?></pre></div>
 </form>
+	<div class="hide" id="compilando">
+		<div class="indeterminate"></div>
+	</div>
+<form action="" enctype="multipart/form-data" method="POST" class="container section center-align">
+    	<label for="fu" class="cfu btn blue lighten-2 center-align">Seleccionar código</label>
+		<input id="fu" type="file" name="cargar" class="btn blue lighten-2">
+		<button type="submit" value="Cargar Archivo" name="subir" class="btn blue lighten-2">
+			<i class="material-icons left">file_upload</i>
+			subir
+		</button>	
+</form>
+
+<div id="resul"class="hide">
+	<textarea id="resultado" class="col s12" readonly></textarea>
+</div>
+
+
 <!-- Compiled and minified JavaScript -->
-<script type="text/javascript" src="./src/materialize/js/materialize.js"></script>
-<script src="./src/ace-master/src/ace.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" src="./sources/materialize/js/materialize.js"></script>
+<script src="sources/ace-builds/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="./sources/FileSaver.js/src/FileSaver.js"></script>
+<script type="text/javascript" src="./sources/jquery-3.6.1.min.js"></script>
 <script>
+
     var editor = ace.edit("editor");
     editor.setTheme("ace/theme/monokai");
     editor.session.setMode("ace/mode/c_cpp");
+	editor.setFontSize('14px');
+
+	function descargar(){
+		var code = editor.getValue();
+		var blob = new Blob([code], {type: "text/plain;charset=utf-8"});
+		saveAs(blob,"codigo.c");
+	}
+	$('#compilar').click(function(){
+		var code = editor.getValue();
+		var ruta ="texto=" + code;
+		document.getElementById("compilando").className="progress center-align container";
+		$.ajax({
+			url:'./Compilar.php',
+			type: 'POST',
+			data: ruta,
+		})
+		.done(function(res){
+			document.getElementById("resultado").innerHTML=res;
+			document.getElementById("resul").className="container row animate__animated animate__fadeInUp";
+			document.getElementById("compilando").className="hide";
+			window.scrollTo(0, document.body.scrollHeight);
+		})
+		.fail(function(){
+			console.log("error");
+		})
+		.always(function(){
+			console.log("complete");
+		})
+	});
+	$("#ejecutar").click(function(){
+		$.ajax({
+			url:'./Debugging.php',
+			type: 'POST',
+		})
+		.done(function(){
+			console.log("todo correcto");
+		})
+		.fail(function(){
+			console.log("error");
+		})
+		.always(function(){
+			console.log("complete");
+		})
+	})
 </script>
 </body>
 </html>
-<style type="text/css" media="screen"></style>

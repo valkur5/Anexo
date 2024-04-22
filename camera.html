@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv='Cache-Control'  content='no-cache, no-store, must-revalidate'>
+	<meta http-equiv='Expires'  content='-1'>
+	<meta http-equiv='Pragma'  content='no-cache'>
+</head>
+<body  onload="webCam()">
+
+<img id="webcam" src="" style="height: 480px; width:640px;"></img>
+
+<script type="text/javascript">
+	var newImage = new Image();
+	newImage.src="http://localhost/pruebas/sources/webcam/image.jpg";
+	function webCam(){
+	if(newImage.complete){
+	document.getElementById("webcam").src=newImage.src;
+	newImage.src="http://localhost/pruebas/sources/webcam/image.jpg?"+ new Date().getTime();
+	}	
+	setInterval(webCam, 35);
+	}
+		
+		
+</script>
+</body>
+</html>

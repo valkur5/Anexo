@@ -1,26 +1,26 @@
 <?php
 header("Cache-control: no-cache, must-revalidate");
 if (isset($_GET['tec1'])){
-shell_exec("./src/app/switch.bat 1");
+shell_exec("switch.bat 1");
 }
 if (isset($_GET['tec2'])){
-shell_exec("./src/app/switch.bat 2");
+shell_exec("switch.bat 2");
 }
 if (isset($_GET['tec3'])){
-shell_exec("./src/app/switch.bat 3");
+shell_exec("switch.bat 3");
 }
 if (isset($_GET['tec4'])){
-shell_exec("./src/app/switch.bat 4");
+shell_exec("switch.bat 4");
 }
 ?>
 
 <html>
 <head>
-	<meta http-equiv='cache-control'  content='no-cache'>
-	<meta http-equiv='expires'  content='0'>
-	<meta http-equiv='pragma'  content='no-cache'>
+	<meta http-equiv='Cache-Control'  content='no-cache, no-store, must-revalidate'>
+	<meta http-equiv='Expires'  content='-1'>
+	<meta http-equiv='Pragma'  content='no-cache'>
 </head>
-<div class=" section blue lighten-5"><h2 class="teal-text text-lighten-2 center-align">Ejecución</h2></div>
+<div id="titulo" class="section blue lighten-5"><h3 class="teal-text text-lighten-2 center-align">WebCam: LPC1769</h3></div>
 	<!-- Compiled and minified CSS -->
 	<link type="text/css" media="screen,projection" rel="stylesheet" href="./sources/materialize/css/materialize.css">
 
@@ -29,12 +29,18 @@ shell_exec("./src/app/switch.bat 4");
 	
 	<!--Import Google Icon Font-->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<body onload="webCam()" class="blue darken-2">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<body onload="webCam()" class="blue darken-2 animate__animated animate__fadeIn" id="contenido">
 	<div class="container section center-align">
-		<img id="webcam" src="" style="height: 480px; width:640;">
-		</img>
+		<img id="webcam" src="" style="height: 480px; width:640px;"></img>
 	</div>
-	<div class="container center-align">
+	<!--<div class="container center-align animate__animated animate__bounceIn" id="loader">Ejecutando... Por favor espere.
+	</div>-->
+	</br>
+
+	
+	<div class="center-align">
 		<form>
 	    <input type="submit" value="tec1" name="tec1" class="btn blue lighten-2"/>
 	    <input type="submit" value="tec2" name="tec2" class="btn blue lighten-2"/>
@@ -42,21 +48,40 @@ shell_exec("./src/app/switch.bat 4");
 	    <input type="submit" value="tec4" name="tec4" class="btn blue lighten-2"/>
 		</form>
 	</div>
-	<a href="http://localhost/pruebas">
-	<input type="button" value="Volver" id="volver" class="btn blue lighten-2"/>
+	<a id="volver" href="./">
+		<button type="button" class="btn waves-effect waves-light"/>
+			<i class="material-icons left">arrow_back</i>
+			Volver
+		</button>
 	</a>
+	<script type="text/javascript" src="./sources/jquery-3.6.1.min.js"></script>
+	
 	<script type="text/javascript">
-		var newImage = new Image();
-		newImage.src= "http://localhost/pruebas/sources/webcam/image0.jpg"
-		function webCam(){
-		if(newImage.complete){
-			document.getElementById("webcam").src= newImage.src;
-			newImage.src="http://localhost/pruebas/sources/webcam/image0.jpg?" + new Date().getTime();
-		}
-		setInterval(webCam, 300);
-		}
-		
-		
-	</script>
+	
+	//Rotador de imágenes
+	var newImage = new Image();
+	newImage.src="./sources/webcam/image.jpg";
+	function webCam(){
+	if(newImage.complete){
+	document.getElementById("webcam").src=newImage.src;
+	newImage.src="./sources/webcam/image.jpg?"+ new Date().getTime();
+	}	
+	setInterval(webCam, 35);
+	}
+	
+	setTimeout(()=>{document.getElementById("loader").innerHTML="Todo listo!";},2000);
+	setTimeout(()=>{document.getElementById("loader").className="container center-align animate__animated animate__bounceOut";},2000);
+</script>
 </body>
 </html>
+<style>
+#volver{
+	position:absolute;
+	left:20px;
+	top:675px;
+}
+#titulo{
+	height:100px;
+}
+
+</style>

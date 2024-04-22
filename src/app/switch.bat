@@ -1,2 +1,0 @@
-@rem MODE.com COM5 BAUD=9600 PARITY=n DATA=8 STOP=1
-echo %1 > COM5
