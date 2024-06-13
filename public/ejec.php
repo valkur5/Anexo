@@ -29,7 +29,7 @@ if (isset($_GET['tec4'])) {
 	<link type="text/css" media="screen,projection" rel="stylesheet" href="./src/styles/index.css">
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-	<script src='./public/viewer.js'></script>  
+	<script src='viewer.js'></script>  
 
 </head>
 <div id="titulo" class="section blue lighten-5">

@@ -51,7 +51,7 @@ if(isset($_POST['subir'])){
 		Compilar
 	</button>
 
-	<a href="./ejec.php" id="ejecutar" class="btn waves-effect waves-light">Ejecutar</a>
+	<a href="./public/ejec.php" id="ejecutar" class="btn waves-effect waves-light">Ejecutar</a>
 	</div>
 </div>
 </form>
