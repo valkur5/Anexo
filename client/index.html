@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!--Import Google Icon Font-->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+	<link type="text/css" media="screen,projection" rel="stylesheet" href="./src/styles/index.css">
+
+	<title>Laboratorio Remoto UNCa</title>
+
+</head>
+
+<body id="contenido" class="animate__animated animate__fadeIn">
+	<img class="responsive-img" src="./src/assets/fondo.png">
+	<div class="container row blue">
+		<h1 class="col s12 flow-text center-align"> Laboratorio Remoto </h1>
+	</div>
+
+	<form action="" method="post">
+		<!-- Area de programación -->
+		<div class="container center-align section row">
+			<textarea name="texto" class="col s12" id="editor"></textarea>
+		</div>
+
+
+		<!-- Botones de acción -->
+		<div class="container center-align row">
+			<div class="center-align row">
+				<button onclick="descargar()" type="button" name="guardar" class="btn blue lighten-2 ">
+					<i class="material-icons left">file_download</i>
+					Descargar código
+				</button>
+
+				<button id="compilar" type="button" name="compilar" class="btn blue lighten-2">
+					<i class="material-icons left">assignment_turned_in</i>
+					Compilar
+				</button>
+
+				<a href="./ejec.html" id="ejecutar" class="btn waves-effect waves-light">Ejecutar</a>
+			</div>
+		</div>
+	</form>
+	<div class="hide" id="compilando">
+		<div class="indeterminate"></div>
+	</div>
+
+	<!-- Decidir si dedicarle el tiempo a subir archivo o no
+<form action="localhost:8080/subir" enctype="multipart/form-data" method="POST" class="container section center-align">
+    	<label for="fu" class="cfu btn blue lighten-2 center-align">Seleccionar código</label>
+		<input id="fu" type="file" name="cargar" class="btn blue lighten-2">
+		<button onclick="subido()" type="button" value="Cargar Archivo" name="subir" class="btn blue lighten-2">
+			<i class="material-icons left">file_upload</i>
+			subir
+		</button>	
+</form>-->
+
+	<div id="resul" class="hide">
+		<textarea id="resultado" class="col s12" readonly></textarea>
+	</div>
+
+
+	<!-- Compiled and minified JavaScript -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/ace-builds@1.35/src-min-noconflict/ace.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.7.1.js"></script>
+	<script src="index.js" type="text/javascript"></script>
+</body>
+
+</html>
