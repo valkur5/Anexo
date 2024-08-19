@@ -13,7 +13,11 @@ fetch("/CodeBase").then(response=>response.text()).then(text=>{
 function descargar() {
     var code = editor.getValue();
     var blob = new Blob([code], { type: "text/plain;charset=utf-8" });
-    saveAs(blob, "codigo.c");
+    const link = document.createElement("a");
+    link.download = "mi_codigo.c";
+    link.href = URL.createObjectURL(blob);
+    link.click();
+
 }
 
 function subido(){
