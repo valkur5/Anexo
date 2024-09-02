@@ -120,8 +120,8 @@ function handleTrackEvent(e, peer) {
     console.log("Hay una cámara conectada");
     
 };
-/*
-exec("bash script.sh",(error, stdout,stderr)=>{
+
+exec("bash ./client/src/scripts/Build2.sh",(error, stdout,stderr)=>{
     if(error){
         console.error(error.message);
         return;
@@ -135,7 +135,8 @@ exec("bash script.sh",(error, stdout,stderr)=>{
         return;
         
     }
-});*/
+});
+
 server.listen(8080,"0.0.0.0",()=>{
     console.log("El servidor está levantado en el puerto 8080");
     
