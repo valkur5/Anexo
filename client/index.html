@@ -20,17 +20,16 @@
 
 <body id="contenido" class="animate__animated animate__fadeIn">
 	<img class="responsive-img" src="./src/assets/fondo.png">
-	<div class="container row blue">
-		<h1 class="col s12 flow-text center-align"> Laboratorio Remoto </h1>
+	<div class="container row" id="title">
+		<h1 class="col s12 flow-text center-align"> LPC1769 </h1>
+	</div>
+
+	<!-- Area de programación -->
+	<div class="container center-align section row">
+		<textarea name="texto" class="col s12" id="editor"></textarea>
 	</div>
 
 	<form action="" method="post">
-		<!-- Area de programación -->
-		<div class="container center-align section row">
-			<textarea name="texto" class="col s12" id="editor"></textarea>
-		</div>
-
-
 		<!-- Botones de acción -->
 		<div class="container center-align row">
 			<div class="center-align row">
@@ -41,16 +40,17 @@
 
 				<button id="compilar" type="button" name="compilar" class="btn blue lighten-2">
 					<i class="material-icons left">assignment_turned_in</i>
+					
 					Compilar
-				</button>
 
+	
+				</button>
+				
 				<a href="./ejec.html" id="ejecutar" class="btn waves-effect waves-light">Ejecutar</a>
 			</div>
 		</div>
 	</form>
-	<div class="hide" id="compilando">
-		<div class="indeterminate"></div>
-	</div>
+
 
 	<!-- Decidir si dedicarle el tiempo a subir archivo o no
 <form action="localhost:8080/subir" enctype="multipart/form-data" method="POST" class="container section center-align">

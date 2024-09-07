@@ -12,8 +12,7 @@
 	display: none;
 }
 #compilando{
-	position: relative;
-
+	margin: 0 0 20px 0;
 }
 #resultado{
 	height: 511px;
@@ -24,8 +23,8 @@
 	border: 1px solid #ccc;
 	box-shadow: 1px 1px 1px #999;
 	resize: none;	
-	background-color: #272822;
-	color:white;
+	background-color: #DEDDD6;
+	color:black;
 	font: 14px/normal 'Monaco','Menlo','Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
 }
 html {
@@ -33,7 +32,7 @@ html {
   }
 
 body{
-	background-color:#1e73be;
+	background-color:#2B9EE6;
 }
 h1{
 	font-family: 'Monaco','Menlo','Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
@@ -45,4 +44,7 @@ h1{
 	text-decoration: rgb(68,68,68);
 	font-variant: normal;
 	text-transform:capitalize;
+}
+#title{
+	color: #96A1A9;
 }

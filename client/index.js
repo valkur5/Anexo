@@ -29,7 +29,7 @@ function subido(){
 $('#compilar').click(function () {
     var code = editor.getValue();
     var ruta = "texto=" + code;
-    document.getElementById("compilando").className = "progress center-align container";
+    document.getElementById("compilando").className = "preloader-wrapper big active";
     $.ajax({
         url: './Compilar.php',
         type: 'POST',

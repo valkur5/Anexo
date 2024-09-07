@@ -2,4 +2,4 @@
 # Utilizando el MCUXpresso IDE
 echo Ejecutando MCUXpresso IDE, Esto puede tardar un momento
 #Compila el objetivo
-/usr/local/mcuxpressoide-11.10.0_3148/ide/mcuxpressoide -nosplash --launcher.suppressErrors -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data "/home/valkur/Documentos/Linux backup/mcuworkspace" -importAll "/home/valkur/Documentos/Linux backup/mcuworkspace" -build SL2_TP1y2/Debug
+/usr/local/mcuxpressoide-11.3.0_5222/ide/mcuxpressoide -nosplash --launcher.suppressErrors -application org.eclipse.cdt.managedbuilder.core.headlessbuild -data "/home/valkur/Documentos/Linux backup/mcuworkspace" -importAll "/home/valkur/Documentos/Linux backup/mcuworkspace" -build SL2_TP1y2/Debug
